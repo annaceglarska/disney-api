@@ -1,6 +1,4 @@
-.buttons-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    margin: 0px 50px 0px 50px
+.header {
+    text-align: center;
+    margin-top: 50px;
 }

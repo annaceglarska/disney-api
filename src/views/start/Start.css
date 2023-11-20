@@ -1,0 +1,23 @@
+.picture {
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.link-style {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: rgb(166, 130, 224);
+    color: black;
+    border-radius: 5px;  
+}
+
+.button {
+    margin: auto;
+    display: block;
+    width: fit-content;
+    margin-top: 10px;
+}

@@ -1,16 +1,15 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
-import Table from "./components/table/Table";
 
 const author = "Anna Kikut";
 
 function App() {
-
   return (
     <>
       <header></header>
       <main>
-        <h1>Disney App</h1>
-        <Table /> 
+        <h1 className="header">Disney App</h1>
+        <Outlet />
       </main>
       <footer>
         <span>Create by {author}</span>
