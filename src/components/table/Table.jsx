@@ -1,32 +1,8 @@
-import React, { useEffect, useState } from "react";
 import Row from "./../row/Row";
-import apiService from "../../services/api.service";
 import BootstrapTable from "react-bootstrap/Table";
 import "./Table.css";
-import Button from "react-bootstrap/Button";
 
-function Table() {
-  const [charactersDataResponse, setCharactersDataResponse] = useState(null);
-  useEffect(() => {
-    dataFetch();
-  }, []);
-
-  const clickPreviousNext = (type) => () => {
-    const { previousPage, nextPage } = charactersDataResponse.info;
-    const params =
-      type === "previous" ? previousPage.split("?")[1] : nextPage.split("?")[1];
-    dataFetch(params);
-  };
-
-  const dataFetch = (params) => {
-    apiService
-      .fetchCharacters(params)
-      .then((data) => {
-        setCharactersDataResponse(data);
-      })
-      .catch(() => console.log("Coś poszło nie tak"));
-  };
-
+function Table(props) {
   return (
     <>
       <BootstrapTable striped bordered>
@@ -47,36 +23,12 @@ function Table() {
           <th>Url</th>
         </thead>
         <tbody>
-          {charactersDataResponse &&
-            charactersDataResponse.data.map((element) => (
+          {props.charactersDataResponse &&
+            props.charactersDataResponse.data.map((element) => (
               <Row key={element._id} element={element} />
             ))}
         </tbody>
       </BootstrapTable>
-      <div class="buttons-container">
-        <Button
-          variant="primary"
-          disabled={
-            charactersDataResponse
-              ? !charactersDataResponse.info.previousPage
-              : true
-          }
-          onClick={clickPreviousNext("previous")}
-        >
-          Previous
-        </Button>
-        <Button
-          variant="primary"
-          disabled={
-            charactersDataResponse
-              ? !charactersDataResponse.info.nextPage
-              : true
-          }
-          onClick={clickPreviousNext("next")}
-        >
-          Next
-        </Button>
-      </div>
     </>
   );
 }

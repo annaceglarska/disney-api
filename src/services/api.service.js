@@ -5,7 +5,20 @@ class ApiService {
 
   async fetchCharacters(params) {
     try {
-      const response = await fetch(`${this.baseUrl}/character${params ? `?${params}`: ''}`);
+      const response = await fetch(
+        `${this.baseUrl}/character${params ? `?${params}` : ""}`
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
+  async fetchCharacterById(id) {
+    try {
+      const response = await fetch(`${this.baseUrl}/character/${id}`);
       const data = await response.json();
       return data;
     } catch (error) {
