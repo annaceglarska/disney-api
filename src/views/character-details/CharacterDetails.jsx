@@ -5,6 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Spinner from "react-bootstrap/Spinner";
 import ArrayFormater from "../../components/array-formater/ArrayFormater";
 import "./CharacterDetails.css";
+import Button from "react-bootstrap/Button";
 
 function CharacterDetails() {
   const params = useParams();
@@ -32,6 +33,7 @@ function CharacterDetails() {
     <>
       <h4 className="header-details">{characterDetails.data.name}</h4>
       <img className="image" src={characterDetails.data.imageUrl} />
+      <Button variant="primary">View</Button>
       <div>
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
@@ -76,6 +78,14 @@ function CharacterDetails() {
             <Accordion.Header>Enemies</Accordion.Header>
             <Accordion.Body>
               <ArrayFormater stringArray={characterDetails.data.enemies} />
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="7">
+            <Accordion.Header>Wiki</Accordion.Header>
+            <Accordion.Body>
+              <a href={characterDetails.data.sourceUrl}>
+                {characterDetails.data.sourceUrl}
+              </a>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

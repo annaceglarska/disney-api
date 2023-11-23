@@ -4,5 +4,16 @@
     text-decoration: none;
     background-color: rgb(166, 130, 224);
     color: black;
-    border-radius: 5px; 
+    border-radius: 5px;
+    margin-top: auto;
+}
+
+.card-image {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
 }

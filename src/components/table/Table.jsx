@@ -5,7 +5,7 @@ import "./Table.css";
 function Table(props) {
   return (
     <>
-      <BootstrapTable striped bordered>
+      <BootstrapTable striped bordered responsive>
         <thead className="thead">
           <th>Id</th>
           <th>Films</th>

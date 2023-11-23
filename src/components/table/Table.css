@@ -8,3 +8,7 @@
     align-items: stretch;
     margin: 0px 50px 0px 50px
 }
+
+.table-responsive {
+    padding: 20px
+}
