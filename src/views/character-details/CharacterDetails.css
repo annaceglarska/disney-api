@@ -19,3 +19,21 @@
     margin: auto;
     width: 50%;
 }
+
+.chat-button{
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.description{
+    margin: auto;
+    width: 45%;
+    margin-bottom: 30px;
+}
+
+.spinner{
+    margin: auto;
+    display: block;
+    margin-bottom: 30px;
+}

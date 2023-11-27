@@ -6,12 +6,16 @@ import Spinner from "react-bootstrap/Spinner";
 import ArrayFormater from "../../components/array-formater/ArrayFormater";
 import "./CharacterDetails.css";
 import Button from "react-bootstrap/Button";
+import openaiService from "../../services/openai.service";
 
 function CharacterDetails() {
   const params = useParams();
   console.log(params);
 
   const [characterDetails, setCharacterDetails] = useState(null);
+  const [generatedDescription, setGeneratedDescription] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     apiService
       .fetchCharacterById(params.id)
@@ -21,9 +25,23 @@ function CharacterDetails() {
       .catch(() => console.log("Coś poszło nie tak"));
   }, [params.id]);
 
+  const generateDescription = async () => {
+    setIsLoading(true);
+    try {
+      const response = await openaiService.getDescription(
+        characterDetails.data.name
+      );
+      setGeneratedDescription(response.message.content);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   if (!characterDetails) {
     return (
-      <Spinner animation="border" role="status">
+      <Spinner animation="border" role="status" className="main-spinner">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );
@@ -33,7 +51,26 @@ function CharacterDetails() {
     <>
       <h4 className="header-details">{characterDetails.data.name}</h4>
       <img className="image" src={characterDetails.data.imageUrl} />
-      <Button variant="primary">View</Button>
+      {isLoading ? (
+        <Spinner animation="border" role="status" className="spinner">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      ) : (
+        <div>
+          {generatedDescription ? (
+            <div className="description">{generatedDescription}</div>
+          ) : (
+            <Button
+              variant="primary"
+              className="chat-button"
+              onClick={generateDescription}
+            >
+              Generate description
+            </Button>
+          )}
+        </div>
+      )}
+
       <div>
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">

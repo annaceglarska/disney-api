@@ -1,15 +1,15 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import { Container } from "react-bootstrap";
+import Navbar from "./components/navbar/Navbar";
 
 const author = "Anna Kikut";
 
 function App() {
   return (
     <Container fluid>
-      <header></header>
+      <Navbar />
       <main>
-        <h1 className="header">Disney App</h1>
         <Outlet />
       </main>
       <footer>

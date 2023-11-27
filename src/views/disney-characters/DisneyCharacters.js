@@ -4,6 +4,7 @@ import "./DisneyCharacters.css";
 import Button from "react-bootstrap/Button";
 import Cards from "../../components/cards/Cards";
 import apiService from "../../services/api.service";
+import { Spinner } from "react-bootstrap";
 
 function DisneyCharacters() {
   const [isCardsView, setIsCardsView] = useState(false);
@@ -33,6 +34,14 @@ function DisneyCharacters() {
       })
       .catch(() => console.log("Coś poszło nie tak"));
   };
+
+  if (!charactersDataResponse) {
+    return (
+      <Spinner animation="border" role="status" className="main-spinner">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
 
   return (
     <>

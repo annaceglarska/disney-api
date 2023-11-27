@@ -6,15 +6,18 @@ class OpenAIService {
     dangerouslyAllowBrowser: true,
   });
 
-  async sample() {
+  async getDescription(characterName) {
     const completion = await this.openai.chat.completions.create({
       messages: [
-        { role: "system", content: "Podaj imiona 5 książniczek Disneya" },
+        {
+          role: "system",
+          content: `Write few sentences about ${characterName} - disney movie character.`,
+        },
       ],
       model: "gpt-3.5-turbo",
     });
 
-    console.log(completion.choices[0]);
+    return completion.choices[0];
   }
 }
 
